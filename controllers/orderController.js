@@ -13,14 +13,14 @@ export const getOrders = async (req, res) => {
 
 export const createOrder = async (req, res) => {
   // IdCustomer
-  const { dishes, customerId } = req.body
+  const { dishes, customer } = req.body
   // let orderDate = new Date()
 
   // date would be awesome that the servers creates it
   const orderDate = new Date()
   const wasCompleted = false
   try {
-    const order = new Order({ orderDate, dishes, customerId, wasCompleted })
+    const order = new Order({ orderDate, dishes, customer, wasCompleted })
     await order.save()
     return res.json({ order })
   } catch (error) {

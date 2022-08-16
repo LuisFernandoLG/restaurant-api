@@ -26,6 +26,11 @@ const DishScheme = Schema({
     type: Boolean,
     required: true,
   },
+  tag: {
+    type: Schema.Types.ObjectId,
+    ref: 'Tag',
+    // required: true,
+  },
 })
 
 const Dish = model('Dish', DishScheme)

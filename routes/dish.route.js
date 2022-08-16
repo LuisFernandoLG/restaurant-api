@@ -1,9 +1,10 @@
 import { Router } from 'express'
-import { createDish, getDishes, removeDish, updateDish } from '../controllers/dishController.js'
+import { createDish, getDishes, getDishesByTag, removeDish, updateDish } from '../controllers/dishController.js'
 
 const router = Router()
 
 router.get('/', getDishes)
+router.get('/tag/:tagId', getDishesByTag)
 
 router.post('/', createDish)
 router.put('/:id', updateDish)

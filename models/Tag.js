@@ -1,8 +1,8 @@
 import mongoose from 'mongoose'
 
-const { Scheme, model } = mongoose
+const { Schema, model } = mongoose
 
-const Tag = Scheme({
+const TagScheme = Schema({
   name: {
     type: String,
     required: true,
@@ -23,3 +23,5 @@ const Tag = Scheme({
     required: true,
   },
 })
+
+export const Tag = model("Tag", TagScheme)
