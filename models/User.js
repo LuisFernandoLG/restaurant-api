@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const { Schema, model } = mongoose
 
-const CustomerScheme = Schema({
+const UserSchema = Schema({
   name: {
     type: String,
     required: true,
@@ -27,7 +27,12 @@ const CustomerScheme = Schema({
     type: Boolean,
     required: true,
   },
+  userType: {
+    type: Schema.Types.ObjectId,
+    ref: 'UserType',
+    required: true,
+  },
 })
 
-const Customer = model('Customer', CustomerScheme)
-export { Customer }
+const User = model('User', UserSchema)
+export { User }

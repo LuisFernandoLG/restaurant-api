@@ -29,7 +29,7 @@ const DishScheme = Schema({
   tag: {
     type: Schema.Types.ObjectId,
     ref: 'Tag',
-    // required: true,
+    required: true,
   },
 })
 

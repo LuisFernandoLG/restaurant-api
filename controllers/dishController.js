@@ -14,7 +14,7 @@ export const getDishes = async (req, res) => {
 export const getDishesByTag = async (req, res) => {
   const { tagId } = req.params
   try {
-    const dishesFiltered = await await Dish.find({ tagId })
+    const dishesFiltered = await Dish.find({ tagId })
       .populate({
         path: 'tag',
         select: 'name',
@@ -74,7 +74,6 @@ export const removeDish = async (req, res) => {
     if (!dish) throw new Error('dish not found')
 
     await dish.remove()
-
     return res.json({ dish })
   } catch (error) {
     if (error.kind === 'ObjectId')

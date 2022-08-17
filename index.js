@@ -7,6 +7,7 @@ import { createServer } from 'http'
 
 import dishRouter from './routes/dish.route.js'
 import orderRouter from './routes/order.route.js'
+import tableRouter from './routes/table.route.js'
 import authRouter from './routes/auth.route.js'
 import tagRouter from './routes/tag.route.js'
 import { requireAuthWs } from './middlewares/websockets/requireToken.ws.js'
@@ -16,6 +17,7 @@ import {
   removeOrder,
   setAsCompletedOrder,
 } from './controllers/orderController.ws.js'
+import { initiliazebd } from './controllers/initialize.controller.js'
 
 const app = express()
 const server = createServer(app)
@@ -29,11 +31,12 @@ app.use(express.json())
 
 // -------------------------------------------------------------------
 // API REST
-// app.use('/', (req, res) => res.json({ ok: true }))
+app.use('/api/v1/tables', tableRouter)
 app.use('/api/v1/dishes', dishRouter)
-app.use('/api/v1/orders', orderRouter)
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/tags', tagRouter)
+app.use('/api/v1/initiliazebd', initiliazebd)
+// app.use('/api/v1/orders', orderRouter)
 
 const PORT = process.env.PORT || 5000
 
@@ -52,10 +55,10 @@ const io = new WebSocketServer(httpServer, { cors: { origin: '*' } })
 io.use(requireAuthWs)
 
 io.on('connect', (socket) => {
-  getAllOrders(socket)
+  // getAllOrders(socket)
   // socket.on('getOrders', () => getOrders(socket))
-  socket.on('addOrder', (order) => addOrder(socket, order))
-  socket.on('removeOrder', (orderId) => removeOrder(socket, orderId))
-  socket.on('setAsCompletOrder', (orderId) => setAsCompletedOrder(socket, orderId))
+  // socket.on('addOrder', (order) => addOrder(socket, order))
+  // socket.on('removeOrder', (orderId) => removeOrder(socket, orderId))
+  // socket.on('setAsCompletOrder', (orderId) => setAsCompletedOrder(socket, orderId))
 })
 

@@ -41,8 +41,8 @@ export const getOrders = async (socket) => {
 
 export const getAllOrders = async (socket) => {
   const orders = await Order.find().lean()
-  const clientsConnected = socket.clients();
-  console.log({clientsConnected})
-  socket.emit('getAllOrders', {orders, clientsConnected})
+  // const clientsConnected = socket.clients();
+  // console.log({clientsConnected})
+  socket.emit('getAllOrders', orders)
   return orders
 }
