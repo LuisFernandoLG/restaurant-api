@@ -11,6 +11,18 @@ export const getDishes = async (req, res) => {
   }
 }
 
+export const getDish = async (req, res) => {
+  const { id } = req.params
+  try {
+    const dish = await Dish.findOne({ _id: id }).lean()
+    if (!dish) throw new Error('dish not found')
+
+    return res.json({ success: true, dish })
+  } catch (error) {
+    return res.status(404).json({ error })
+  }
+}
+
 export const getDishesByTag = async (req, res) => {
   const { tagId } = req.params
   try {

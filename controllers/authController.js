@@ -21,7 +21,7 @@ export const registerWaiter = async (req, res) => {
     let user = User.find({ userName })
     if (!user) throw new Error('user already exists!')
 
-    user = await new User({
+    user = new User({
       name,
       userName,
       password,
